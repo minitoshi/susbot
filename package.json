@@ -14,7 +14,7 @@
     "build": "npm run build --workspaces",
     "typecheck": "npm run typecheck --workspaces"
   },
-  "devDependencies": {
+  "optionalDependencies": {
     "canvas": "^3.2.1"
   }
 }

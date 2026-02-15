@@ -3,7 +3,7 @@ services:
     name: susbot-server
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --ignore-scripts && npm run build --workspace=shared && npm run build --workspace=server
     startCommand: npm run start --workspace=server
     envVars:
       - key: PORT
