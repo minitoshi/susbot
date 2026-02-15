@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: susbot-server
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start --workspace=server
+    envVars:
+      - key: PORT
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: MOLTBOOK_APP_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
