@@ -3,8 +3,8 @@ services:
     name: susbot-server
     runtime: node
     plan: free
-    buildCommand: npm ci --ignore-scripts && npm run build --workspace=shared && npm run build --workspace=server
-    startCommand: npm run start --workspace=server
+    buildCommand: NODE_ENV=development npm ci --ignore-scripts && npm run build --workspace=shared && npm run build --workspace=server
+    startCommand: node server/dist/index.js
     envVars:
       - key: PORT
         sync: false
@@ -12,5 +12,3 @@ services:
         sync: false
       - key: MOLTBOOK_APP_KEY
         sync: false
-      - key: NODE_ENV
-        value: production
