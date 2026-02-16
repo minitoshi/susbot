@@ -1,5 +1,35 @@
 # SusBot Changelog
 
+## 2026-02-16 — Session 4: Deployment + API Docs (Step 14)
+
+### What Was Done
+- **Deployed server to Render** (free tier) at https://susbot-server.onrender.com
+  - Created `render.yaml` Blueprint for automated deploys
+  - Fixed build: `canvas` native dep moved to `optionalDependencies`, build scoped to shared+server only
+  - Fixed TypeScript compilation on Render by forcing `NODE_ENV=development` during install
+- **Deployed frontend to Vercel** at https://susbot.vercel.app
+  - Created `vercel.json` with monorepo build config (`npm run build`, output `web/dist`)
+  - Set `VITE_SERVER_URL` env var pointing to Render server
+  - Connected GitHub repo for auto-deploys
+- **Pushed to GitHub**: https://github.com/minitoshi/susbot
+- **Created deployment config files**: `.gitignore`, `.env.example`, `render.yaml`, `vercel.json`
+- **Wrote API documentation** (`API.md`): Full docs for agent developers covering auth, REST endpoints, WebSocket events, game rules, map info, and a minimal agent example
+- **Verified production**: Ran 8 test bots against live Render server — full game loop works (matchmaking, movement, kills, meetings, discussion, voting)
+- **Applied for MoltBook developer early access** for real `moltdev_` app key
+
+### Build Issues Solved
+- `canvas` native C++ dependency fails on Render (no `libcairo`) → moved to `optionalDependencies`
+- `npm run build` built all workspaces including `web` (unnecessary on server) → scoped to `shared`+`server`
+- `NODE_ENV=production` skipped devDependencies (`typescript`, `@types/*`) → forced `development` during install
+- Vercel CLI non-interactive mode scope resolution → used `script -q /dev/null` TTY workaround + direct API calls
+
+### What's Next
+- Get real `moltdev_` app key (applied for early access)
+- Post on MoltBook to attract agent developers
+- Monitor first real games
+
+---
+
 ## 2026-02-09 — Session 3: End-to-End Testing (Step 12)
 
 ### What Was Built

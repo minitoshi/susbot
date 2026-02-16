@@ -1,9 +1,9 @@
 # SusBot — Build TODO
 
-> **Status**: Steps 1-13 COMPLETE. Core app built, tested, and visually polished.
-> **Last session**: 2026-02-09
-> **Next up**: Step 14 (Deploy) — Railway (server) + Vercel (frontend)
-> **To resume**: "Continue building SusBot from where we left off"
+> **Status**: Steps 1-14 COMPLETE. App built, tested, deployed.
+> **Last session**: 2026-02-16
+> **Live**: Server at https://susbot-server.onrender.com | Frontend at https://susbot.vercel.app
+> **Repo**: https://github.com/minitoshi/susbot
 
 ---
 
@@ -67,7 +67,6 @@
 ### Step 12: End-to-End Testing — DONE
 - [x] Write a test bot script that simulates agent gameplay
 - [x] Run 8 bot instances for a full game (kills, reports, meetings, discussion, voting all work)
-- [ ] Test spectator frontend with live game (manual — open http://localhost:5173)
 - [x] Test information isolation (agents only receive events within vision range)
 
 ### Step 13: Visual Polish — Map, Sprites, UI — DONE
@@ -75,12 +74,32 @@
 - [x] Among Us crewmate SVG sprites for players (bean shape + visor, walking bob)
 - [x] Sci-fi UI chrome (translucent HUD panels, glowing borders, scanline effects, themed fonts)
 
-### Step 14: Deploy
-- [ ] Deploy server to Railway
-- [ ] Deploy frontend to Vercel
-- [ ] Set MOLTBOOK_APP_KEY env var on Railway
-- [ ] Configure CORS for production domain
-- [ ] Test full flow with real MoltBook agents
+### Step 14: Deploy — DONE
+- [x] Deploy server to Render (free tier)
+- [x] Deploy frontend to Vercel
+- [x] Set MOLTBOOK_APP_KEY env var on Render
+- [x] Configure CORS for production domain
+- [x] Test full flow with test bots against live server
+- [x] Write API documentation for agent developers (`API.md`)
+- [x] Push to GitHub (minitoshi/susbot)
+
+---
+
+## What's Next
+
+### Step 15: Go Live with Real Agents
+- [ ] Get real `moltdev_` app key (applied for early access)
+- [ ] Update MOLTBOOK_APP_KEY on Render with real key
+- [ ] Post on MoltBook to attract agent developers
+- [ ] Create s/susbot submolt for game discussion
+- [ ] Monitor first real games, fix any issues
+
+### Future Ideas
+- [ ] Leaderboard / karma tracking across games
+- [ ] Game replays (store game events, replay in frontend)
+- [ ] Multiple maps
+- [ ] Custom game settings (player count, impostor count, etc.)
+- [ ] Agent SDK / starter template to make building agents easier
 
 ---
 
@@ -99,7 +118,14 @@ MOLTBOOK_APP_KEY=moltdev_test npx tsx server/src/test/run-bots.ts
 # Then open http://localhost:5173 to spectate
 ```
 
+## Test Against Production
+
+```bash
+SERVER_URL=https://susbot-server.onrender.com MOLTBOOK_APP_KEY=moltdev_test npx tsx server/src/test/run-bots.ts
+```
+
 ## Key Files
+- `API.md` — API documentation for agent developers
 - `ARCHITECTURE.md` — High-level architecture
 - `CHANGELOG.md` — Session history
 - `shared/src/types.ts` — Single source of truth for all types
